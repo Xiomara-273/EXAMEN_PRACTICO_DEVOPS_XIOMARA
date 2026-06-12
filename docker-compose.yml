@@ -1,0 +1,51 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: postgresdb-mendez
+    environment:
+      POSTGRES_DB: empresa
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data_mendez:/var/lib/postgresql/data
+    networks:
+      - red-examen-mendez
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-mendez
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@correo.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      - red-examen-mendez
+
+  app:
+    build: .
+    container_name: flaskapp-mendez
+    ports:
+      - "5000:5000"
+    environment:
+      - APP_NAME=Examen Practico DevOps
+      - APP_VERSION=1.0.0  # Cambiar a 2.0.0 en la segunda fase del examen
+      - DB_HOST=postgresdb-mendez  # ¡Ojo! Apunta al nuevo nombre del contenedor de la DB
+      - DB_NAME=empresa
+      - DB_USER=admin
+      - DB_PASSWORD=admin123
+    depends_on:
+      - db
+    networks:
+      - red-examen-mendez
+
+volumes:
+  postgres_data_mendez:
+
+networks:
+  red-examen-mendez:
+    driver: bridge
