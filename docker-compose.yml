@@ -33,7 +33,7 @@ services:
       - "5000:5000"
     environment:
       - APP_NAME=Examen Practico DevOps
-      - APP_VERSION=1.0.0  # Cambiar a 2.0.0 en la segunda fase del examen
+      - APP_VERSION=2.0.0  # Cambiar a 2.0.0 en la segunda fase del examen
       - DB_HOST=postgresdb-mendez  # ¡Ojo! Apunta al nuevo nombre del contenedor de la DB
       - DB_NAME=empresa
       - DB_USER=admin

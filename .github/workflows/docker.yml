@@ -11,7 +11,7 @@ permissions:
 
 env:
   IMAGE_NAME: mendez_flask_postgres
-  IMAGE_TAG: 1.0.0  # FASE 1: Inicializar con 1.0.0 (Cambiar a 2.0.0 después)
+  IMAGE_TAG: 2.0.0  # FASE 1: Inicializar con 1.0.0 (Cambiar a 2.0.0 después)
 
 jobs:
   build:
